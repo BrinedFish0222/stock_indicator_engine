@@ -24,7 +24,7 @@ enum StockIndicatorOperator {
         .any((element) => element.value == value);
   }
 
-  static StockIndicatorOperator? operator(String value) {
+  static StockIndicatorOperator operator(String value) {
     return StockIndicatorOperator.values
         .firstWhere((element) => element.value == value, orElse: () => unknown);
   }

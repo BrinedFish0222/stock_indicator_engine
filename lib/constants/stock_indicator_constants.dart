@@ -3,6 +3,10 @@
 enum StockIndicatorKeys {
   leftBracket(value: '('),
   rightBracket(value: ')'),
+  semicolon(value: ';'),
+  comma(value: ','),
+  variable(value: ':'),
+  variable2(value: ':='),
   ;
 
   final String value;
@@ -10,11 +14,3 @@ enum StockIndicatorKeys {
   const StockIndicatorKeys({required this.value});
 }
 
-enum StockIndicatorParameterType {
-
-  /// 用户定义
-  defined,
-
-  /// 公式中的变量
-  variable,
-}

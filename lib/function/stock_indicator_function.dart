@@ -1,10 +1,26 @@
+import 'package:stock_indicator_engine/function/stock_indicator_function_type.dart';
+
+import '../model/candlestick_chart.dart';
+
 /// 指标函数规范
 abstract class StockIndicatorFunction {
-  const StockIndicatorFunction({
-    required this.name,
-    this.desc = '',
-  });
 
-  final String name;
-  final String desc;
+  /// 编号，例如：CLOSE、EMA、HIGH 等
+  String get code;
+
+  /// 参数个数
+  int get paramCount;
+
+  /// 是否拥有参数
+  bool get hasParams => paramCount != 0;
+
+  StockIndicatorFunctionType get type;
+
+  /// 计算
+  /// [candlestickChart] K线图数据
+  /// [params] 参数列表
+  List<double?> compute({
+    required CandlestickChart candlestickChart,
+    required List<List<double?>> params,
+  });
 }

@@ -1,21 +1,43 @@
 
-import 'constants/stock_indicator_constants.dart';
+import 'model/stock_indicator_structure.dart';
 
-/// 指标参数
-class StockIndicatorParameter {
-  final StockIndicatorParameterType type;
+/// 指标用户输入参数
+class StockIndicatorInputParameter {
   final String name;
   final double value;
 
-  StockIndicatorParameter({
-    this.type = StockIndicatorParameterType.defined,
+  StockIndicatorInputParameter({
     required this.name,
     this.value = 0,
   });
 
+  StockIndicatorParameter toParameter(int length) {
+    return StockIndicatorParameter(
+        name: name, value: List.filled(length, value));
+  }
+
   @override
   String toString() {
     return 'StockIndicatorParameter{name: $name, value: $value}';
+  }
+}
+
+/// 指标参数
+class StockIndicatorParameter {
+  final String name;
+  List<double?> value = [];
+
+  StockIndicatorParameter({
+    required this.name,
+    required this.value,
+  });
+
+  StockIndicatorParameter.input({
+    required this.name,
+    required double? value,
+    required int dataLength,
+  }) {
+    this.value = List.filled(dataLength, value);
   }
 }
 
@@ -42,5 +64,35 @@ class TestFormulaResult {
   @override
   String toString() {
     return 'TestFormulaResult{success: $success, message: $message}';
+  }
+}
+
+/// 公式执行结果
+class RunFormulaResult {
+  final bool success;
+  final String message;
+  final List<StockIndicatorStructure> data;
+
+  const RunFormulaResult({
+    required this.success,
+    required this.message,
+    required this.data,
+  });
+
+  const RunFormulaResult.success({
+    this.success = true,
+    this.message = '测试通过',
+    required this.data,
+  });
+
+  const RunFormulaResult.fail({
+    this.success = false,
+    this.message = '公式错误',
+    this.data = const [],
+  });
+
+  @override
+  String toString() {
+    return 'RunFormulaResult{success: $success, message: $message, data: $data}';
   }
 }
