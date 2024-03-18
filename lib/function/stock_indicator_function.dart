@@ -9,10 +9,10 @@ abstract class StockIndicatorFunction {
   String get code;
 
   /// 参数个数
-  int get paramCount;
+  // int get paramCount;
 
   /// 是否拥有参数
-  bool get hasParams => paramCount != 0;
+  // bool get hasParams => paramCount != 0;
 
   StockIndicatorFunctionType get type;
 

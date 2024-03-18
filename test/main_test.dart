@@ -85,7 +85,7 @@ void main() {
       MACD:=TESTONE(TESTONE(DEA,MID),DIF);
   """;
 
-    var result = StockIndicatorEngine(
+    RunFormulaResult result = StockIndicatorEngine(
       candlestickChart: candlestickChart,
       formula: formula,
       inputParameters: parameters,

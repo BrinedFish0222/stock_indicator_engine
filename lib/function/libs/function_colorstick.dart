@@ -17,8 +17,5 @@ class FunctionColorstick extends StockIndicatorFunction {
   }
 
   @override
-  int get paramCount => 0;
-
-  @override
   StockIndicatorFunctionType get type => StockIndicatorFunctionType.fixed;
 }

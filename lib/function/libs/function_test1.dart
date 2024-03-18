@@ -30,10 +30,7 @@ class FunctionTest1 extends StockIndicatorFunction {
 
     return result;
   }
-
-  @override
-  int get paramCount => 2;
-
+  
   @override
   StockIndicatorFunctionType get type => StockIndicatorFunctionType.compute;
 }
