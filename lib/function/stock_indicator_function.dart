@@ -8,12 +8,7 @@ abstract class StockIndicatorFunction {
   /// 编号，例如：CLOSE、EMA、HIGH 等
   String get code;
 
-  /// 参数个数
-  // int get paramCount;
-
-  /// 是否拥有参数
-  // bool get hasParams => paramCount != 0;
-
+  /// 函数类型
   StockIndicatorFunctionType get type;
 
   /// 计算
