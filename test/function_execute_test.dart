@@ -8,7 +8,7 @@ void main() {
   group('function_execute', () {
     test('matchFunctionContent', () {
       StockIndicatorEngineData data = StockIndicatorEngineData(
-        candlestickChart: KChart(dataList: [
+        chart: KChart(dataList: [
           CandlestickChartData(
               dateTime: DateTime.now(), open: 10, close: 12, high: 13, low: 9),
           CandlestickChartData(
@@ -66,7 +66,7 @@ void main() {
     });
     test('TESTONE', () {
       StockIndicatorEngineData data = StockIndicatorEngineData(
-        candlestickChart: KChart(dataList: [
+        chart: KChart(dataList: [
           CandlestickChartData(
               dateTime: DateTime.now(), open: 10, close: 12, high: 13, low: 9),
           CandlestickChartData(
