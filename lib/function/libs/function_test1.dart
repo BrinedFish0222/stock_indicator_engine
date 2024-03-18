@@ -10,7 +10,7 @@ class FunctionTest1 extends StockIndicatorFunction {
 
   @override
   List<double?> compute({
-    required KChart candlestickChart,
+    required KChart chart,
     required List<List<double?>> params,
   }) {
     List<double?> param1 = params[0];
@@ -30,7 +30,7 @@ class FunctionTest1 extends StockIndicatorFunction {
 
     return result;
   }
-  
+
   @override
   StockIndicatorFunctionType get type => StockIndicatorFunctionType.compute;
 }

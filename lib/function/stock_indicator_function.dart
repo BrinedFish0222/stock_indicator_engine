@@ -12,10 +12,10 @@ abstract class StockIndicatorFunction {
   StockIndicatorFunctionType get type;
 
   /// 计算
-  /// [candlestickChart] K线图数据
+  /// [chart] K线图数据
   /// [params] 参数列表
   List<double?> compute({
-    required KChart candlestickChart,
+    required KChart chart,
     required List<List<double?>> params,
   });
 }

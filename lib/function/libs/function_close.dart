@@ -9,14 +9,14 @@ class FunctionClose extends StockIndicatorFunction {
 
   @override
   List<double?> compute({
-    required KChart candlestickChart,
-    required List params,
+    required KChart chart,
+    required List<List<double?>> params,
   }) {
-    if (candlestickChart.dataList.isEmpty) {
+    if (chart.dataList.isEmpty) {
       return [];
     }
 
-    return candlestickChart.dataList.map((e) => e?.close).toList();
+    return chart.dataList.map((e) => e?.close).toList();
   }
 
   @override

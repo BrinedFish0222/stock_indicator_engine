@@ -5,7 +5,7 @@ import 'package:stock_indicator_engine/stock_indicator.dart';
 import 'package:stock_indicator_engine/stock_indicator_engine.dart';
 
 void main() {
-  KChart candlestickChart = KChart(dataList: [
+  KChart chart = KChart(dataList: [
     CandlestickChartData(
         dateTime: DateTime.now(), open: 10, close: 12, high: 13, low: 9),
     CandlestickChartData(
@@ -28,7 +28,7 @@ void main() {
   """;
 
     var result = StockIndicatorEngine(
-      candlestickChart: candlestickChart,
+      chart: chart,
       formula: formula,
       inputParameters: [],
     ).run();
@@ -45,7 +45,7 @@ void main() {
   """;
 
     var result = StockIndicatorEngine(
-      candlestickChart: candlestickChart,
+      chart: chart,
       formula: formula,
       inputParameters: [],
     ).run();
@@ -63,7 +63,7 @@ void main() {
   """;
 
     var result = StockIndicatorEngine(
-      candlestickChart: candlestickChart,
+      chart: chart,
       formula: formula,
       inputParameters: [],
     ).run();
@@ -86,7 +86,7 @@ void main() {
   """;
 
     RunFormulaResult result = StockIndicatorEngine(
-      candlestickChart: candlestickChart,
+      chart: chart,
       formula: formula,
       inputParameters: parameters,
     ).run();

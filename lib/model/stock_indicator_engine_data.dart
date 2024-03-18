@@ -8,7 +8,7 @@ import 'candlestick_chart.dart';
 /// 股票指标引擎数据
 class StockIndicatorEngineData {
   /// K线数据
-  final KChart candlestickChart;
+  final KChart chart;
 
   /// 公式
   String formula;
@@ -20,18 +20,18 @@ class StockIndicatorEngineData {
   final List<StockIndicatorStructure> functionStructure = [];
 
   StockIndicatorEngineData({
-    required this.candlestickChart,
+    required this.chart,
     required this.formula,
     required this.parameters,
   });
 
   StockIndicatorEngineData.input({
-    required this.candlestickChart,
+    required this.chart,
     required this.formula,
     required List<StockIndicatorInputParameter> inputParameters,
   }) {
     parameters = inputParameters
-        .map((e) => e.toParameter(candlestickChart.dataList.length))
+        .map((e) => e.toParameter(chart.dataList.length))
         .toList();
   }
 

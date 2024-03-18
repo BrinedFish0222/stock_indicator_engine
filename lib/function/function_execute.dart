@@ -36,7 +36,7 @@ class FunctionExecute {
     // 处理数字情况
     if (function.isNumber) {
       double value = double.parse(function);
-      return List<double?>.filled(data.candlestickChart.dataList.length, value);
+      return List<double?>.filled(data.chart.dataList.length, value);
     }
 
     // 如果能在参数中找到，直接返回
@@ -59,7 +59,7 @@ class FunctionExecute {
 
     // 根据子函数结果计算当前函数结果
     var result = _currentFunction.compute(
-      candlestickChart: data.candlestickChart,
+      chart: data.chart,
       params: subFunctionResult,
     );
 

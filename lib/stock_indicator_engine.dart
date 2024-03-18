@@ -15,12 +15,12 @@ import 'model/stock_indicator_structure.dart';
 /// 股票指标引擎
 class StockIndicatorEngine {
   StockIndicatorEngine({
-    required KChart candlestickChart,
+    required KChart chart,
     required String formula,
     required this.inputParameters,
   }) {
     _data = StockIndicatorEngineData.input(
-      candlestickChart: candlestickChart,
+      chart: chart,
       formula: formula,
       inputParameters: inputParameters,
     );
@@ -122,7 +122,7 @@ class StockIndicatorEngine {
         .map((e) => StockIndicatorParameter.input(
               name: e,
               value: 0,
-              dataLength: _data.candlestickChart.dataList.length,
+              dataLength: _data.chart.dataList.length,
             ))
         .toList();
 
