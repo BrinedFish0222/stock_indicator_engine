@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:stock_indicator_engine/common/reg_exp_utils.dart';
+import 'package:stock_indicator_engine/utils/reg_exp_utils.dart';
 import 'package:stock_indicator_engine/function/function_execute.dart';
 import 'package:stock_indicator_engine/model/candlestick_chart.dart';
 import 'package:stock_indicator_engine/model/stock_indicator_engine_data.dart';
@@ -8,7 +8,7 @@ void main() {
   group('function_execute', () {
     test('matchFunctionContent', () {
       StockIndicatorEngineData data = StockIndicatorEngineData(
-        candlestickChart: CandlestickChart(dataList: [
+        candlestickChart: KChart(dataList: [
           CandlestickChartData(
               dateTime: DateTime.now(), open: 10, close: 12, high: 13, low: 9),
           CandlestickChartData(
@@ -66,7 +66,7 @@ void main() {
     });
     test('TESTONE', () {
       StockIndicatorEngineData data = StockIndicatorEngineData(
-        candlestickChart: CandlestickChart(dataList: [
+        candlestickChart: KChart(dataList: [
           CandlestickChartData(
               dateTime: DateTime.now(), open: 10, close: 12, high: 13, low: 9),
           CandlestickChartData(

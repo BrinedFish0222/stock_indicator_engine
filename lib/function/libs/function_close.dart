@@ -9,7 +9,7 @@ class FunctionClose extends StockIndicatorFunction {
 
   @override
   List<double?> compute({
-    required CandlestickChart candlestickChart,
+    required KChart candlestickChart,
     required List params,
   }) {
     if (candlestickChart.dataList.isEmpty) {

@@ -8,7 +8,7 @@ import 'candlestick_chart.dart';
 /// 股票指标引擎数据
 class StockIndicatorEngineData {
   /// K线数据
-  final CandlestickChart candlestickChart;
+  final KChart candlestickChart;
 
   /// 公式
   String formula;

@@ -17,7 +17,7 @@ pubspec.look
 local.properties
 .packages
 .flutter-plugins
-
+.vscode/
 
 .packages
 

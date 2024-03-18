@@ -1,5 +1,5 @@
-import 'package:stock_indicator_engine/common/reg_exp_utils.dart';
-import 'package:stock_indicator_engine/common/string_ext.dart';
+import 'package:stock_indicator_engine/utils/reg_exp_utils.dart';
+import 'package:stock_indicator_engine/utils/string_ext.dart';
 import 'package:stock_indicator_engine/model/candlestick_chart.dart';
 import 'package:stock_indicator_engine/stock_indicator.dart';
 import 'package:stock_indicator_engine/utils/kline_util.dart';
@@ -15,7 +15,7 @@ import 'model/stock_indicator_structure.dart';
 /// 股票指标引擎
 class StockIndicatorEngine {
   StockIndicatorEngine({
-    required CandlestickChart candlestickChart,
+    required KChart candlestickChart,
     required String formula,
     required this.inputParameters,
   }) {

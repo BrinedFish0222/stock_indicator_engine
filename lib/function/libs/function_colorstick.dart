@@ -10,7 +10,7 @@ class FunctionColorstick extends StockIndicatorFunction {
 
   @override
   List<double?> compute({
-    required CandlestickChart candlestickChart,
+    required KChart candlestickChart,
     required List<List<double?>> params,
   }) {
     return [];

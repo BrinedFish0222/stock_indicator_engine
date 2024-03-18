@@ -5,7 +5,7 @@ import 'package:stock_indicator_engine/stock_indicator.dart';
 import 'package:stock_indicator_engine/stock_indicator_engine.dart';
 
 void main() {
-  CandlestickChart candlestickChart = CandlestickChart(dataList: [
+  KChart candlestickChart = KChart(dataList: [
     CandlestickChartData(
         dateTime: DateTime.now(), open: 10, close: 12, high: 13, low: 9),
     CandlestickChartData(

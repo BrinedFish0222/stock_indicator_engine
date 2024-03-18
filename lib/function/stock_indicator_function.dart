@@ -20,7 +20,7 @@ abstract class StockIndicatorFunction {
   /// [candlestickChart] K线图数据
   /// [params] 参数列表
   List<double?> compute({
-    required CandlestickChart candlestickChart,
+    required KChart candlestickChart,
     required List<List<double?>> params,
   });
 }

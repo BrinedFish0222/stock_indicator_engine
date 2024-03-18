@@ -1,5 +1,5 @@
-import 'package:stock_indicator_engine/common/reg_exp_utils.dart';
-import 'package:stock_indicator_engine/common/string_ext.dart';
+import 'package:stock_indicator_engine/utils/reg_exp_utils.dart';
+import 'package:stock_indicator_engine/utils/string_ext.dart';
 import 'package:stock_indicator_engine/function/stock_indicator_function.dart';
 import 'package:stock_indicator_engine/function/stock_indicator_function_library.dart';
 import 'package:stock_indicator_engine/utils/kline_util.dart';

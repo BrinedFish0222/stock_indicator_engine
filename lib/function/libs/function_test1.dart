@@ -10,7 +10,7 @@ class FunctionTest1 extends StockIndicatorFunction {
 
   @override
   List<double?> compute({
-    required CandlestickChart candlestickChart,
+    required KChart candlestickChart,
     required List<List<double?>> params,
   }) {
     List<double?> param1 = params[0];

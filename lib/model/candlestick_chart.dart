@@ -1,12 +1,13 @@
 
-class CandlestickChart {
+/// K线图数据
+class KChart {
 
-  CandlestickChart({required this.dataList});
+  KChart({required this.dataList});
 
   List<CandlestickChartData?> dataList;
 }
 
-
+/// 蜡烛图数据
 class CandlestickChartData {
   DateTime dateTime;
   double open;

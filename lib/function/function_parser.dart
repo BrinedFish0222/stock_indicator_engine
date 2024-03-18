@@ -1,5 +1,5 @@
-import 'package:stock_indicator_engine/common/compute_utils.dart';
-import 'package:stock_indicator_engine/common/string_ext.dart';
+import 'package:stock_indicator_engine/utils/compute_utils.dart';
+import 'package:stock_indicator_engine/utils/string_ext.dart';
 import 'package:stock_indicator_engine/function/function_execute.dart';
 
 import '../constants/stock_indicator_constants.dart';
@@ -8,6 +8,7 @@ import '../model/stock_indicator_engine_data.dart';
 import '../model/stock_indicator_structure.dart';
 
 /// 函数解析器
+/// 负责分解一行公式，将结构拆分，然后调用[FunctionExecute]进行计算结果。
 class FunctionParser {
   FunctionParser({
     required this.structure,
@@ -30,6 +31,7 @@ class FunctionParser {
 
   /// 执行
   List<double?> run() {
+    // 单个函数执行计算结果
     List<List<double?>> executeResults = [];
     for (String function in _functions) {
       List<double?> result = FunctionExecute(
@@ -42,7 +44,7 @@ class FunctionParser {
     int length = executeResults.first.length;
     List<double?> result = [];
     final List<double?> currentComputeDataList = [];
-    // 统计结果
+    // 所有函数一起计算结果
     for (int i = 0; i < length; ++i) {
       for (var es in executeResults) {
         currentComputeDataList.add(es[i]);
