@@ -1,11 +1,11 @@
-import 'package:stock_indicator_engine/utils/reg_exp_utils.dart';
-import 'package:stock_indicator_engine/utils/string_ext.dart';
+import 'package:stock_indicator_engine/common/utils/reg_exp_utils.dart';
+import 'package:stock_indicator_engine/common/utils/string_ext.dart';
 import 'package:stock_indicator_engine/model/candlestick_chart.dart';
 import 'package:stock_indicator_engine/stock_indicator.dart';
-import 'package:stock_indicator_engine/utils/kline_util.dart';
 
-import 'common/common_exception.dart';
-import 'common/variables_define_exception.dart';
+import 'common/exc/common_exception.dart';
+import 'common/exc/variables_define_exception.dart';
+import 'common/utils/kline_util.dart';
 import 'constants/stock_indicator_constants.dart';
 import 'constants/stock_indicator_structure_type.dart';
 import 'function/function_parser.dart';

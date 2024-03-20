@@ -2,7 +2,7 @@ import 'package:stock_indicator_engine/function/libs/function_test1.dart';
 import 'package:stock_indicator_engine/function/stock_indicator_function.dart';
 import 'package:stock_indicator_engine/function/stock_indicator_function_type.dart';
 
-import '../utils/kline_util.dart';
+import '../common/utils/kline_util.dart';
 import 'libs/function_close.dart';
 import 'libs/function_colorstick.dart';
 

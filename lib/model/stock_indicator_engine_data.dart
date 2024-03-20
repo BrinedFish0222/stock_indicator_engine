@@ -1,8 +1,8 @@
 
 import 'package:stock_indicator_engine/model/stock_indicator_structure.dart';
 
+import '../common/utils/kline_util.dart';
 import '../stock_indicator.dart';
-import '../utils/kline_util.dart';
 import 'candlestick_chart.dart';
 
 /// 股票指标引擎数据

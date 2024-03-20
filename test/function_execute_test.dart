@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:stock_indicator_engine/utils/reg_exp_utils.dart';
+import 'package:stock_indicator_engine/common/utils/reg_exp_utils.dart';
 import 'package:stock_indicator_engine/function/function_execute.dart';
 import 'package:stock_indicator_engine/model/candlestick_chart.dart';
 import 'package:stock_indicator_engine/model/stock_indicator_engine_data.dart';

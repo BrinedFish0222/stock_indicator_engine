@@ -119,8 +119,8 @@ void main() {
       inputParameters: parameters,
     ).test();
 
-    print('错误信息：${result.message}');
-    print('错误句子：${result.messageDetails}');
+    // print('错误信息：${result.message}');
+    // print('错误句子：${result.messageDetails}');
     expect(result.success, false);
   });
 }
