@@ -1,9 +1,11 @@
+import 'package:stock_indicator_engine/common/common_exception.dart';
 import 'package:stock_indicator_engine/utils/reg_exp_utils.dart';
 import 'package:stock_indicator_engine/utils/string_ext.dart';
 import 'package:stock_indicator_engine/function/stock_indicator_function.dart';
 import 'package:stock_indicator_engine/function/stock_indicator_function_library.dart';
 import 'package:stock_indicator_engine/utils/kline_util.dart';
 
+import '../common/function_not_found_exception.dart';
 import '../model/stock_indicator_engine_data.dart';
 import '../stock_indicator.dart';
 
@@ -79,7 +81,7 @@ class FunctionExecute {
     }
 
     if (functionName == null) {
-      throw Exception('无法解析函数');
+      throw CommonException('无法解析函数');
     }
 
     if (data.parameters.any((element) => element.name == functionName)) {
@@ -89,7 +91,7 @@ class FunctionExecute {
     StockIndicatorFunction? stockIndicatorFunction =
         StockIndicatorFunctionLibrary().getFunction(functionName);
     if (stockIndicatorFunction == null) {
-      throw Exception('无法识别函数：$functionName');
+      throw FunctionNotFoundException(functionName);
     }
 
     _currentFunction = stockIndicatorFunction;

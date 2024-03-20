@@ -1,5 +1,4 @@
 
-import 'model/stock_indicator_structure.dart';
 
 /// 指标用户输入参数
 class StockIndicatorInputParameter {
@@ -68,27 +67,31 @@ class TestFormulaResult {
 }
 
 /// 公式执行结果
-class RunFormulaResult {
+class RunFormulaResult<T> {
   final bool success;
   final String message;
-  final List<StockIndicatorStructure> data;
+  final String messageDetails;
+  final T data;
 
   const RunFormulaResult({
     required this.success,
     required this.message,
+    this.messageDetails = '',
     required this.data,
   });
 
   const RunFormulaResult.success({
     this.success = true,
     this.message = '测试通过',
+    this.messageDetails = '',
     required this.data,
   });
 
   const RunFormulaResult.fail({
     this.success = false,
     this.message = '公式错误',
-    this.data = const [],
+    this.messageDetails = '',
+    required this.data,
   });
 
   @override
