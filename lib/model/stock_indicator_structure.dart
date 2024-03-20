@@ -11,6 +11,9 @@ class StockIndicatorStructure {
 
   final StockIndicatorStructureType type;
 
+  /// 源公式
+  final String originFormula;
+
   /// 公式
   final String formula;
 
@@ -22,6 +25,7 @@ class StockIndicatorStructure {
   StockIndicatorStructure({
     this.name = '',
     this.type = StockIndicatorStructureType.output,
+    required this.originFormula,
     required this.formula,
     required this.fixedFunctions,
   });

@@ -1,5 +1,3 @@
-
-
 /// 指标用户输入参数
 class StockIndicatorInputParameter {
   final String name;
@@ -71,7 +69,7 @@ class RunFormulaResult<T> {
   final bool success;
   final String message;
   final String messageDetails;
-  final T data;
+  final T? data;
 
   const RunFormulaResult({
     required this.success,
@@ -84,18 +82,20 @@ class RunFormulaResult<T> {
     this.success = true,
     this.message = '测试通过',
     this.messageDetails = '',
-    required this.data,
+    this.data,
   });
 
   const RunFormulaResult.fail({
     this.success = false,
     this.message = '公式错误',
     this.messageDetails = '',
-    required this.data,
+    this.data,
   });
+
+  bool get fail => !success;
 
   @override
   String toString() {
-    return 'RunFormulaResult{success: $success, message: $message, data: $data}';
+    return 'RunFormulaResult{success: $success, message: $message, messageDetails: $messageDetails, data: $data}';
   }
 }

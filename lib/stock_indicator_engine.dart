@@ -5,6 +5,7 @@ import 'package:stock_indicator_engine/stock_indicator.dart';
 import 'package:stock_indicator_engine/utils/kline_util.dart';
 
 import 'common/common_exception.dart';
+import 'common/variables_define_exception.dart';
 import 'constants/stock_indicator_constants.dart';
 import 'constants/stock_indicator_structure_type.dart';
 import 'function/function_parser.dart';
@@ -53,22 +54,55 @@ class StockIndicatorEngine {
   }
 
   /// 测试公式
-  TestFormulaResult test() {
+  RunFormulaResult test() {
     try {
-      Set<String> unknownWords = _checkWords();
+      // 检测未知关键字
+      Set<String> unknownWords = _checkUnknownWords();
       if (unknownWords.isNotEmpty) {
         throw CommonException("未知字符：$unknownWords");
       }
 
-      return const TestFormulaResult.success();
-    } on Exception catch (e) {
-      return TestFormulaResult.fail(message: (e).toString());
+      for (StockIndicatorStructure fs in _data.functionStructure) {
+        // 检测一条公式变量不唯一问题
+        RunFormulaResult testVariablesResult = _testVariables(fs);
+        if (testVariablesResult.fail) {
+          return testVariablesResult;
+        }
+      }
+
+      return const RunFormulaResult.success(data: null);
+    } catch (e) {
+      return RunFormulaResult.fail(data: null, message: e.toString());
     }
   }
 
-  /// 检查关键字正确性
+  /// 检测变量是否正常
+  RunFormulaResult _testVariables(StockIndicatorStructure structure) {
+    try {
+      String formula = structure.originFormula;
+      RegExp regExp = RegExp(r'(:)+');
+      Iterable<Match> matches = regExp.allMatches(formula);
+
+      if (matches.length > 1) {
+        throw VariablesDefineException();
+      }
+
+      regExp = RegExp(r'(::)+');
+      matches = regExp.allMatches(formula);
+      if (matches.isNotEmpty) {
+        throw VariablesDefineException();
+      }
+
+      return const RunFormulaResult.success();
+    } catch (e) {
+      return RunFormulaResult.fail(
+          message: e.toString(), messageDetails: structure.originFormula);
+    }
+  }
+
+  /// 检查未知关键字
   /// 如果存在未知关键字，返回未知关键字
-  Set<String> _checkWords() {
+  Set<String> _checkUnknownWords() {
     // 定义正则表达式，匹配单词
     RegExp wordRegExp = RegExp(r'\b[a-zA-Z]+\b');
     Iterable<Match> matches = wordRegExp.allMatches(_data.formula);
@@ -138,6 +172,8 @@ class StockIndicatorEngine {
     List<String> formulas =
         _data.formula.split(StockIndicatorKeys.semicolon.value);
     for (String formula in formulas) {
+      String originFormula = formula;
+
       if (formula.isBlank) {
         continue;
       }
@@ -175,11 +211,10 @@ class StockIndicatorEngine {
         formula = formula.substring(0, formula.length - 1);
       }
 
-
-
       var structure = StockIndicatorStructure(
         name: variableWord,
         type: type,
+        originFormula: originFormula,
         formula: formula,
         fixedFunctions: fixedWords,
       );

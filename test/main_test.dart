@@ -103,10 +103,10 @@ void main() {
     expect(result.data[2].data, [29.0, 27.0, 25.0]);
   });
 
-    test('simple5', () {
+  test('simple5', () {
     String formula = """
 
-      DIF:CLOSE-TESTONE(SHORT,2) - 1,;
+      DIF::CLOSE-TESTONE(SHORT,2) - 1,;
 
       DEA:TESTONE(DIF,LONG), COLORSTICK;
 
@@ -117,17 +117,10 @@ void main() {
       chart: chart,
       formula: formula,
       inputParameters: parameters,
-    ).run();
+    ).test();
 
-    expect(result.data[0].name, 'DIF');
-    expect(result.data[0].data, [-3.0, -4.0, -5.0]);
-
-    expect(result.data[1].name, 'DEA');
-    expect(result.data[1].data, [23.0, 22.0, 21.0]);
-    expect(result.data[1].fixedFunctions, {'COLORSTICK'});
-
-    expect(result.data[2].name, 'MACD');
-    expect(result.data[2].type, StockIndicatorStructureType.mute);
-    expect(result.data[2].data, [29.0, 27.0, 25.0]);
+    print('错误信息：${result.message}');
+    print('错误句子：${result.messageDetails}');
+    expect(result.success, false);
   });
 }
