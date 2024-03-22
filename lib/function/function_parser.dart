@@ -1,4 +1,5 @@
 import 'package:stock_indicator_engine/common/utils/compute_utils.dart';
+import 'package:stock_indicator_engine/common/utils/kline_util.dart';
 import 'package:stock_indicator_engine/common/utils/string_ext.dart';
 import 'package:stock_indicator_engine/function/function_execute.dart';
 
@@ -6,9 +7,11 @@ import '../constants/stock_indicator_constants.dart';
 import '../constants/stock_indicator_operator.dart';
 import '../model/stock_indicator_engine_data.dart';
 import '../model/stock_indicator_structure.dart';
+import '../stock_indicator_engine.dart';
 
 /// 函数解析器
 /// 负责分解一行公式，将结构拆分，然后调用[FunctionExecute]进行计算结果。
+/// 例如：(DIF-DEA)*2，拆分，[_functions]存储【DIF、DEA、2】；[_operators]存储【-,*】
 class FunctionParser {
   FunctionParser({
     required this.structure,
@@ -17,8 +20,16 @@ class FunctionParser {
     _init(structure.formula);
   }
 
+  FunctionParser.formula({
+    required String formula,
+    required this.data,
+  }) {
+    structure = StockIndicatorEngine.parseStructure(formula);
+    _init(structure.formula);
+  }
+
   /// 指标结构
-  final StockIndicatorStructure structure;
+  late final StockIndicatorStructure structure;
 
   /// 指标数据
   final StockIndicatorEngineData data;
@@ -34,10 +45,15 @@ class FunctionParser {
     // 单个函数执行计算结果
     List<List<double?>> executeResults = [];
     for (String function in _functions) {
-      List<double?> result = FunctionExecute(
-        function: function,
-        data: data,
-      ).run();
+      List<double?> result = [];
+
+      if (KlineUtil.isChunks(function)) {
+        // 如果是块(DIF-DEA)，则需要走多一遍公式解析。
+        result = FunctionParser.formula(formula: function, data: data).run();
+      } else {
+        result = FunctionExecute(function: function, data: data).run();
+      }
+
       executeResults.add(result);
     }
 
@@ -83,7 +99,8 @@ class FunctionParser {
 
       StockIndicatorOperator? indicatorOperator =
           StockIndicatorOperator.operator(word);
-      if (indicatorOperator != StockIndicatorOperator.unknown) {
+      if (indicatorOperator != StockIndicatorOperator.unknown &&
+          leftBracketNumber == rightBracketNumber) {
         _operators.add(indicatorOperator.value);
       }
 

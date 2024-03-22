@@ -39,7 +39,7 @@ class StockIndicatorEngine {
   late StockIndicatorEngineData _data;
 
   /// 执行公式
-  RunFormulaResult run() {
+  RunFormulaResult<List<StockIndicatorStructure>> run() {
     for (StockIndicatorStructure structure in _data.functionStructure) {
       List<double?> dataList = FunctionParser(
         structure: structure,
@@ -172,10 +172,23 @@ class StockIndicatorEngine {
     List<String> formulas =
         _data.formula.split(StockIndicatorKeys.semicolon.value);
     for (String formula in formulas) {
-      String originFormula = formula;
-
       if (formula.isBlank) {
         continue;
+      }
+
+      var structure = parseStructure(formula);
+
+      KlineUtil.logd('function structure: $structure');
+      _data.functionStructure.add(structure);
+    }
+  }
+
+  /// 解析结构
+  static StockIndicatorStructure parseStructure(String formula) {
+     String originFormula = formula;
+
+      if (formula.isBlank) {
+        throw CommonException('传入空字符串，无法解析成结构');
       }
 
       // 识别变量类型
@@ -220,7 +233,7 @@ class StockIndicatorEngine {
       );
 
       KlineUtil.logd('function structure: $structure');
-      _data.functionStructure.add(structure);
-    }
+      return structure;
   }
+
 }

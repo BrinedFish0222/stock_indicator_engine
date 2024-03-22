@@ -5,6 +5,7 @@ import 'package:stock_indicator_engine/function/stock_indicator_function_type.da
 import '../common/utils/kline_util.dart';
 import 'libs/function_close.dart';
 import 'libs/function_colorstick.dart';
+import 'libs/function_ema.dart';
 
 /// 股票指标函数库
 class StockIndicatorFunctionLibrary {
@@ -15,9 +16,10 @@ class StockIndicatorFunctionLibrary {
 
   StockIndicatorFunctionLibrary._internal() {
     register([
+      FunctionTest1(),
       FunctionClose(),
       FunctionColorstick(),
-      FunctionTest1(),
+      FunctionEma(),
     ]);
   }
 

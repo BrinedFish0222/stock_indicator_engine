@@ -1,6 +1,7 @@
 import 'dart:developer' as developer;
 
 import 'package:flutter/foundation.dart';
+import 'package:stock_indicator_engine/constants/stock_indicator_constants.dart';
 
 class KlineUtil {
   static void logd(String text, {String name = ''}) {
@@ -29,5 +30,18 @@ class KlineUtil {
     if (orElse != null) return orElse();
 
     return null;
+  }
+
+  /// 是否是块，例如：(DIF-DEA)
+  static bool isChunks(String function) {
+    if (function.isEmpty) {
+      return false;
+    }
+
+    if (!(function.startsWith(StockIndicatorKeys.leftBracket.value) && function.endsWith(StockIndicatorKeys.rightBracket.value))) {
+      return false;
+    }
+
+    return true;
   }
 }
