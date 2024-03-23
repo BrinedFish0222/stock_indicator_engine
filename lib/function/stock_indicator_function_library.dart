@@ -1,3 +1,4 @@
+import 'package:stock_indicator_engine/function/libs/function_ma.dart';
 import 'package:stock_indicator_engine/function/libs/function_test1.dart';
 import 'package:stock_indicator_engine/function/stock_indicator_function.dart';
 import 'package:stock_indicator_engine/function/stock_indicator_function_type.dart';
@@ -20,6 +21,7 @@ class StockIndicatorFunctionLibrary {
       FunctionClose(),
       FunctionColorstick(),
       FunctionEma(),
+      FunctionMa(),
     ]);
   }
 
