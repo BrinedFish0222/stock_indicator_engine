@@ -1,3 +1,4 @@
+import 'package:stock_indicator_engine/function/libs/function_hhv.dart';
 import 'package:stock_indicator_engine/function/libs/function_high.dart';
 import 'package:stock_indicator_engine/function/libs/function_llv.dart';
 import 'package:stock_indicator_engine/function/libs/function_low.dart';
@@ -28,6 +29,7 @@ class StockIndicatorFunctionLibrary {
       FunctionHigh(),
       FunctionLow(),
       FunctionLLV(),
+      FunctionHHV(),
     ]);
   }
 

@@ -45,4 +45,18 @@ class FunctionUtils {
         filteredData.reduce((min, value) => min < value ? min : value);
     return minValue;
   }
+
+  static double? max(List<double?> data) {
+    if (data.isEmpty) {
+      return null;
+    }
+
+    // 使用 where 方法过滤掉空值
+    Iterable<double> filteredData =
+        data.where((value) => value != null).cast<double>();
+
+    double? max =
+        filteredData.reduce((value1, value2) => value1 < value2 ? value2 : value1);
+    return max;
+  }
 }
