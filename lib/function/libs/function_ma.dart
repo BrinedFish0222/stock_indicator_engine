@@ -19,7 +19,6 @@ class FunctionMa extends StockIndicatorFunction {
 
     List<double?> result = [];
 
-    // 计算后续的EMA值
     for (int i = 0; i < xParam.length; ++i) {
       final double? val = xParam[i];
       final int n = nParam[i]?.toInt() ?? 0;
