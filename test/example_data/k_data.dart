@@ -1,4 +1,4 @@
-
+import 'package:stock_indicator_engine/common/utils/kline_util.dart';
 import 'package:stock_indicator_engine/model/candlestick_chart.dart';
 
 /// 平安银行数据
@@ -3063,16 +3063,7 @@ List<List<double>> kDataList = [
     1448499712
   ],
   [20240315, 10.23, 10.55, 10.75, 10.5, 10.6, 3750207, 3973799168],
-  [
-    20240318,
-    10.6,
-    10.56,
-    10.61,
-    10.49,
-    10.54,
-    1671396,
-    1761249152
-  ],
+  [20240318, 10.6, 10.56, 10.61, 10.49, 10.54, 1671396, 1761249152],
   [
     20240319,
     10.540000000000001,
@@ -3083,26 +3074,8 @@ List<List<double>> kDataList = [
     1293215,
     1351069568
   ],
-  [
-    20240320,
-    10.4,
-    10.38,
-    10.47,
-    10.37,
-    10.45,
-    872663,
-    910278592
-  ],
-  [
-    20240321,
-    10.45,
-    10.45,
-    10.52,
-    10.42,
-    10.47,
-    864466,
-    905422272
-  ],
+  [20240320, 10.4, 10.38, 10.47, 10.37, 10.45, 872663, 910278592],
+  [20240321, 10.45, 10.45, 10.52, 10.42, 10.47, 864466, 905422272],
   [
     20240322,
     10.47,
@@ -3116,4 +3089,14 @@ List<List<double>> kDataList = [
 ];
 
 /// 平安银行数据
-KChart payhChart = KChart(dataList: kDataList.map((e) => CandlestickChartData(open: e[2], close: e[5], high: e[3], low: e[4], dateTime: DateTime.now())).toList());
+KChart payhChart = KChart(
+  dataList: kDataList
+      .map((e) => CandlestickChartData(
+            open: e[2],
+            close: e[5],
+            high: e[3],
+            low: e[4],
+            dateTime: KlineUtil.parseIntDateToDateTime(e[0].toInt()),
+          ))
+      .toList(),
+);

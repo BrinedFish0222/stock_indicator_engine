@@ -38,7 +38,8 @@ class KlineUtil {
       return false;
     }
 
-    if (!(function.startsWith(StockIndicatorKeys.leftBracket.value) && function.endsWith(StockIndicatorKeys.rightBracket.value))) {
+    if (!(function.startsWith(StockIndicatorKeys.leftBracket.value) &&
+        function.endsWith(StockIndicatorKeys.rightBracket.value))) {
       return false;
     }
 
@@ -51,5 +52,15 @@ class KlineUtil {
     }
 
     return data.reduce((value, element) => (value ?? 0) + (element ?? 0)) ?? 0;
+  }
+
+  /// int类型date转成日期
+  /// [intDate] int类型日期，例如：20240322
+  static DateTime parseIntDateToDateTime(int intDate) {
+    var dateStr = intDate.toString();
+    int year = int.parse(dateStr.substring(0, 4));
+    int month = int.parse(dateStr.substring(4, 6));
+    int day = int.parse(dateStr.substring(6, 8));
+    return DateTime(year, month, day);
   }
 }

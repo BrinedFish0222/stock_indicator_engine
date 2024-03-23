@@ -30,4 +30,19 @@ class FunctionUtils {
     double factor = 10.0 * places;
     return (value * factor).round() / factor;
   }
+
+  static double? min(List<double?> data) {
+    if (data.isEmpty) {
+      return null;
+    }
+
+    // 使用 where 方法过滤掉空值
+    Iterable<double> filteredData =
+        data.where((value) => value != null).cast<double>();
+
+    // 使用 reduce 方法获取最小值
+    double? minValue =
+        filteredData.reduce((min, value) => min < value ? min : value);
+    return minValue;
+  }
 }

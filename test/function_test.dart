@@ -33,4 +33,19 @@ void main() {
     expect(result.success, true);
     expect(result.data?[0].data.last?.toStringAsFixed(2), '10.31');
   });
+
+  test('LLV', () {
+    String formula = """
+      ABC:LLV(LOW,7);
+  """;
+
+    var result = StockIndicatorEngine(
+      chart: payhChart,
+      formula: formula,
+      inputParameters: [],
+    ).run();
+
+    expect(result.success, true);
+    expect(result.data?[0].data.last?.toStringAsFixed(2), '10.20');
+  });
 }
