@@ -66,12 +66,19 @@ class FunctionParser {
         currentComputeDataList.add(es[i]);
       }
 
-      double? value = ComputeUtils.compute(
-        dataList: currentComputeDataList,
-        operators: _operators,
-      );
-      result.add(value);
+      double? value;
+      if (_operators.isEmpty) {
+        // 没有运算符，不需要运算，直接取值
+        value =
+            currentComputeDataList.isEmpty ? null : currentComputeDataList[0];
+      } else {
+        value = ComputeUtils.compute(
+          dataList: currentComputeDataList,
+          operators: _operators,
+        );
+      }
 
+      result.add(value);
       currentComputeDataList.clear();
     }
 

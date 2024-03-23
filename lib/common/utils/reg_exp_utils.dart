@@ -2,9 +2,9 @@ import 'package:stock_indicator_engine/constants/stock_indicator_constants.dart'
 
 /// 正则工具
 class RegExpUtils {
-  static const String word = r'\b[a-zA-Z]+\b';
+  static const String word = r'\b[a-zA-Z0-9]+\b';
 
-  static const String variables = r'\b[a-zA-Z]+(?=:|:=)\b';
+  static const String variables = r'\b[a-zA-Z0-9]+(?=:|:=)\b';
 
   static Set<String> matchBatch({required String regExt, required String str}) {
     RegExp re = RegExp(regExt);

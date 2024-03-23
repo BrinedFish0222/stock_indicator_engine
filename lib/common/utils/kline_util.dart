@@ -44,4 +44,12 @@ class KlineUtil {
 
     return true;
   }
+
+  static double sum(List<double?> data) {
+    if (data.isEmpty) {
+      return 0;
+    }
+
+    return data.reduce((value, element) => (value ?? 0) + (element ?? 0)) ?? 0;
+  }
 }
