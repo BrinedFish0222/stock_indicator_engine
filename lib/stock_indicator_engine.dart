@@ -185,55 +185,51 @@ class StockIndicatorEngine {
 
   /// 解析结构
   static StockIndicatorStructure parseStructure(String formula) {
-     String originFormula = formula;
+    String originFormula = formula;
 
-      if (formula.isBlank) {
-        throw CommonException('传入空字符串，无法解析成结构');
-      }
+    if (formula.isBlank) {
+      throw CommonException('传入空字符串，无法解析成结构');
+    }
 
-      // 识别变量类型
-      StockIndicatorStructureType type = StockIndicatorStructureType.output;
-      if (formula.contains(StockIndicatorKeys.variable2.value)) {
-        // 变量是非输出类型
-        type = StockIndicatorStructureType.mute;
-      }
+    // 识别变量类型
+    StockIndicatorStructureType type = StockIndicatorStructureType.output;
+    if (formula.contains(StockIndicatorKeys.variable2.value)) {
+      // 变量是非输出类型
+      type = StockIndicatorStructureType.mute;
+    }
 
-      // 识别固定函数，从公式中删除
-      Set<String> words =
-          RegExpUtils.matchBatch(regExt: RegExpUtils.word, str: formula);
-      Set<String> fixedWords =
-          StockIndicatorFunctionLibrary().matchFixed(words);
-      var fixedWordMatchList =
-          fixedWords.map((e) => RegExp('\\b$e\\b')).toList();
-      formula = formula.replaceAllBySet(fixedWordMatchList, '');
+    // 识别固定函数，从公式中删除
+    Set<String> words =
+        RegExpUtils.matchBatch(regExt: RegExpUtils.word, str: formula);
+    Set<String> fixedWords = StockIndicatorFunctionLibrary().matchFixed(words);
+    var fixedWordMatchList = fixedWords.map((e) => RegExp('\\b$e\\b')).toList();
+    formula = formula.replaceAllBySet(fixedWordMatchList, '');
 
-      // 识别公式中的开头变量，然后从公式中删除
-      String variableWord = RegExpUtils.match(
-            regExt: RegExpUtils.variables,
-            str: formula,
-          ) ??
-          '';
-      formula = formula.replaceFirst(
-          RegExp(
-              '$variableWord${StockIndicatorKeys.variable.value}|$variableWord${StockIndicatorKeys.variable2.value}'),
-          '');
+    // 识别公式中的开头变量，然后从公式中删除
+    String variableWord = RegExpUtils.match(
+          regExt: RegExpUtils.variables,
+          str: formula,
+        ) ??
+        '';
+    RegExp re = RegExp(
+        '$variableWord${StockIndicatorKeys.variable2.value}|$variableWord${StockIndicatorKeys.variable.value}');
+    formula = formula.replaceFirst(re, '');
 
-      // 去空格、去多余的逗号
-      formula = formula.trimBlank;
-      while (formula.endsWith(StockIndicatorKeys.comma.value)) {
-        formula = formula.substring(0, formula.length - 1);
-      }
+    // 去空格、去多余的逗号
+    formula = formula.trimBlank;
+    while (formula.endsWith(StockIndicatorKeys.comma.value)) {
+      formula = formula.substring(0, formula.length - 1);
+    }
 
-      var structure = StockIndicatorStructure(
-        name: variableWord,
-        type: type,
-        originFormula: originFormula,
-        formula: formula,
-        fixedFunctions: fixedWords,
-      );
+    var structure = StockIndicatorStructure(
+      name: variableWord,
+      type: type,
+      originFormula: originFormula,
+      formula: formula,
+      fixedFunctions: fixedWords,
+    );
 
-      KlineUtil.logd('function structure: $structure');
-      return structure;
+    KlineUtil.logd('function structure: $structure');
+    return structure;
   }
-
 }

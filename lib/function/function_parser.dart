@@ -106,17 +106,12 @@ class FunctionParser {
 
       StockIndicatorOperator? indicatorOperator =
           StockIndicatorOperator.operator(word);
-      if (indicatorOperator != StockIndicatorOperator.unknown &&
-          leftBracketNumber == rightBracketNumber) {
-        _operators.add(indicatorOperator.value);
-      }
 
       if (indicatorOperator != StockIndicatorOperator.unknown &&
           leftBracketNumber == rightBracketNumber) {
         // 到关键运算符位置
-        if (!stack.join().isNumber) {
-          _functions.add(stack.join());
-        }
+        _operators.add(indicatorOperator.value);
+        _functions.add(stack.join());
 
         stack.length = 0;
         continue;
