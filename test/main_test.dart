@@ -38,8 +38,7 @@ void main() {
       inputParameters: parameters,
     ).run();
     stopwatch.stop();
-    print(
-        'Function execution time: ${stopwatch.elapsedMilliseconds} milliseconds');
+    print('MA execution time: ${stopwatch.elapsedMilliseconds} milliseconds');
 
     expect(result.success, true);
     expect(result.data?[0].data.last?.toStringAsFixed(2), '10.44');
@@ -71,5 +70,36 @@ void main() {
     expect(result.data?[0].data.last?.toStringAsFixed(3), '0.129');
     expect(result.data?[1].data.last?.toStringAsFixed(2), '0.17');
     expect(result.data?[2].data.last?.toStringAsFixed(2), '-0.08');
+  });
+
+  test('KDJ', () {
+    List<StockIndicatorInputParameter> parameters = [
+      StockIndicatorInputParameter(name: 'N', value: 9),
+      StockIndicatorInputParameter(name: 'M1', value: 3),
+      StockIndicatorInputParameter(name: 'M2', value: 3),
+    ];
+
+    String formula = """
+      RSV:=(CLOSE-LLV(LOW,N))/(HHV(HIGH,N)-LLV(LOW,N))*100;
+      K:SMA(RSV,M1,1);
+      D:SMA(K,M2,1);
+      J:3*K-2*D;
+  """;
+
+    Stopwatch stopwatch = Stopwatch();
+    stopwatch.start();
+    RunFormulaResult<List<StockIndicatorStructure>> result =
+        StockIndicatorEngine(
+      chart: payhChart,
+      formula: formula,
+      inputParameters: parameters,
+    ).run();
+    stopwatch.stop();
+    print('KDJ execution time: ${stopwatch.elapsedMilliseconds} milliseconds');
+
+    expect(result.success, true);
+    expect(result.data?[1].data.last?.toStringAsFixed(2), '40.65');
+    expect(result.data?[2].data.last?.toStringAsFixed(2), '43.23');
+    expect(result.data?[3].data.last?.toStringAsFixed(2), '35.50');
   });
 }
