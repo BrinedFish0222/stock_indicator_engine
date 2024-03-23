@@ -18,4 +18,19 @@ void main() {
     expect(result.success, true);
     expect(result.data?[0].data.last?.toStringAsFixed(2), '10.45');
   });
+
+  test('LOW', () {
+    String formula = """
+      ABC:LOW;
+  """;
+
+    var result = StockIndicatorEngine(
+      chart: payhChart,
+      formula: formula,
+      inputParameters: [],
+    ).run();
+
+    expect(result.success, true);
+    expect(result.data?[0].data.last?.toStringAsFixed(2), '10.31');
+  });
 }
