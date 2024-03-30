@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:stock_indicator_engine/model/stock_indicator_structure.dart';
 import 'package:stock_indicator_engine/stock_indicator.dart';
@@ -38,7 +39,9 @@ void main() {
       inputParameters: parameters,
     ).run();
     stopwatch.stop();
-    print('MA execution time: ${stopwatch.elapsedMilliseconds} milliseconds');
+    if (kDebugMode) {
+      print('MA execution time: ${stopwatch.elapsedMilliseconds} milliseconds');
+    }
 
     expect(result.success, true);
     expect(result.data?[0].data.last?.toStringAsFixed(2), '10.44');
@@ -95,7 +98,9 @@ void main() {
       inputParameters: parameters,
     ).run();
     stopwatch.stop();
-    print('KDJ execution time: ${stopwatch.elapsedMilliseconds} milliseconds');
+    if (kDebugMode) {
+      print('KDJ execution time: ${stopwatch.elapsedMilliseconds} milliseconds');
+    }
 
     expect(result.success, true);
     expect(result.data?[1].data.last?.toStringAsFixed(2), '40.65');

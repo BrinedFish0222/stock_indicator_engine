@@ -1,6 +1,5 @@
 import 'package:stock_indicator_engine/common/utils/compute_utils.dart';
 import 'package:stock_indicator_engine/common/utils/kline_util.dart';
-import 'package:stock_indicator_engine/common/utils/string_ext.dart';
 import 'package:stock_indicator_engine/function/function_execute.dart';
 
 import '../constants/stock_indicator_constants.dart';
